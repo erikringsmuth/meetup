@@ -6,9 +6,12 @@ Create groups
 
 Ping to see if someone wants to do something
 
+Store login credentials in cookie (auth token)
+
 sqlite
-Python (Bottle, Flask, or web.py for REST)
+Python - Bottle (or Flask, web.py for REST)
 angular.js
+Twitter Bootstrap
 
 Examples:
 Ping -> who: lunch group, what: lunch
