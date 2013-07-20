@@ -8,7 +8,8 @@
 ## Tech
 - sqlite
 - Python - Bottle (or Flask, web.py for REST)
-- grunt
+- grunt.js
+- node.js
 - require.js
 - angular.js
 - Twitter Bootstrap
