@@ -22,9 +22,9 @@
 		}
 	});
 
-	require(['jquery', 'app/indexView'], function($, indexView) {
-		var view = new indexView();
+	require(['jquery', 'app/app'], function($, app) {
+		var view = new app();
+		$('body').html(view.el);
 		view.render();
-		$('body').append(view.el);
 	});
 })();
