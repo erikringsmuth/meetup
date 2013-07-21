@@ -9,7 +9,7 @@ app = bottle.Bottle()
 # Todo: Route to a static file that runs require.js
 @app.route('/')
 def index():
-    return "Welcome to meetup!"
+    return bottle.static_file('index.html', root='')
 
 @app.route('/status')
 def status():
