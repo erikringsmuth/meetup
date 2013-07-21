@@ -9,7 +9,7 @@ app = bottle.Bottle()
 # Todo: Route to a static file that runs require.js
 @app.route('/')
 def index():
-    return bottle.template("Welcome to meetup!")
+    return "Welcome to meetup!"
 
 @app.route('/status')
 def status():
@@ -37,7 +37,7 @@ def getPerson(username):
     })
 
 @app.route('/events')
-def getPeople():
+def getEvents():
     return json.dumps([{
         "@type": "http://schema.org/Event",
         "@id": "/events/1",
@@ -52,7 +52,7 @@ def getPeople():
     }])
 
 @app.route('/events/<id>', method='GET')
-def getPerson(id):
+def getEvent(id):
     return json.dumps({
         "@type": "http://schema.org/Event",
         "@id": "/events/" + id,
@@ -66,5 +66,60 @@ def getPerson(id):
         "duration": ""
     })
 
+@app.route('/places')
+def getPlaces():
+    return json.dumps([{
+        "@type": "http://schema.org/Place",
+        "@id": "/places/1",
+        "id": "guid",
+        "name": "string",
+        "description": "string",
+        "address": {
+            "addressCountry": "string",
+            "addressLocality": "string",
+            "addressRegion": "string",
+            "postalCode": "string",
+            "postOfficeBoxNumber": "string",
+            "streetAddress": "string"
+        }
+    }])
+
+@app.route('/places/<id>', method='GET')
+def getPlace(id):
+    return json.dumps({
+        "@type": "http://schema.org/Place",
+        "@id": "/places/" + id,
+        "id": "guid",
+        "name": "string",
+        "description": "string",
+        "address": {
+            "addressCountry": "string",
+            "addressLocality": "string",
+            "addressRegion": "string",
+            "postalCode": "string",
+            "postOfficeBoxNumber": "string",
+            "streetAddress": "string"
+        }
+    })
+
+@app.route('/things')
+def getThings():
+    return json.dumps([{
+        "@type": "http://schema.org/Thing",
+        "@id": "/things/1",
+        "id": "guid",
+        "name": "string",
+        "description": "string"
+    }])
+
+@app.route('/things/<id>', method='GET')
+def getThing(id):
+    return json.dumps({
+        "@type": "http://schema.org/Thing",
+        "@id": "/things/" + id,
+        "id": "guid",
+        "name": "string",
+        "description": "string"
+    })
 
 app.run(host='localhost', port=8080, debug=True)
