@@ -4,6 +4,7 @@
 	require.config({
 		baseUrl: 'static/js',
 		paths: {
+			'text': 'lib/require/text',
 			'jquery': 'lib/jquery/jquery-2.0.3',
 			'underscore': 'lib/underscore/underscore',
 			'backbone': 'lib/backbone/backbone'
