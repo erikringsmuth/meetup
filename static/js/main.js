@@ -23,8 +23,8 @@
 		}
 	});
 
-	require(['jquery', 'app/app'], function($, app) {
-		var view = new app();
+	require(['jquery', 'app/index/indexView'], function($, indexView) {
+		var view = new indexView();
 		$('body').html(view.el);
 		view.render();
 	});
