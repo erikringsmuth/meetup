@@ -3,7 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'text!./indexTemplate.html',
-	'app/people/peopleView'
+	'backboneApp/people/peopleView'
 ], function($, _, Backbone, indexTemplate, peopleView) {
 	'use strict';
 	

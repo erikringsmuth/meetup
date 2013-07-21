@@ -23,7 +23,7 @@
 		}
 	});
 
-	require(['jquery', 'app/index/indexView'], function($, indexView) {
+	require(['jquery', 'backboneApp/index/indexView'], function($, indexView) {
 		var view = new indexView();
 		$('body').html(view.el);
 		view.render();
