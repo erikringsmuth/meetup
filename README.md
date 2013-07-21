@@ -44,14 +44,14 @@ GET /events/<id>
 {
 	"@type": "http://schema.org/Event",
 	"@id": "/events/" + id,
-	id: "guid",
-	attendees: [],
-	name: "string",
-	description: "string",
-	location: {}, // Place
-	startDate: new Date(),
-	endDate: new Date(),
-	duration: "" // Duration
+	"id": "guid",
+	"attendees": [],
+	"name": "string",
+	"description": "string",
+	"location": {}, // Place
+	"startDate": new Date(),
+	"endDate": new Date(),
+	"duration": "" // Duration
 }
 
 GET /places
@@ -59,16 +59,16 @@ GET /places/<id>
 {
 	"@type": "http://schema.org/Place",
 	"@id": "/places/" + id,
-	id: "guid",
-	name: "string",
-	description: "string",
-	address: {
-		addressCountry: "string",
-		addressLocality: "string",
-		addressRegion: "string",
-		postalCode: "string",
-		postOfficeBoxNumber: "string",
-		streetAddress: "string"
+	"id": "guid",
+	"name": "string",
+	"description": "string",
+	"address": {
+		"addressCountry": "string",
+		"addressLocality": "string",
+		"addressRegion": "string",
+		"postalCode": "string",
+		"postOfficeBoxNumber": "string",
+		"streetAddress": "string"
 	}
 }
 
@@ -77,8 +77,8 @@ GET /things/<id>
 {
 	"@type": "http://schema.org/Thing",
 	"@id": "/things/" + id,
-	id: "guid",
-	name: "string",
-	description: "string"
+	"id": "guid",
+	"name": "string",
+	"description": "string"
 }
 ```
