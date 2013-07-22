@@ -10,9 +10,6 @@
 			'backbone': 'lib/backbone/backbone'
 		},
 		shim: {
-			'jquery': {
-				exports: '$'
-			},
 			'underscore': {
 				exports: '_'
 			},
