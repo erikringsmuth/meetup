@@ -13,8 +13,10 @@ define([
 		collection: new peopleCollection(),
 		
 		render: function() {
-			this.collection.fetch();
-			this.$el.html(this.template({model: this.collection.toJSON()}));
+			var that = this;
+			this.collection.fetch({success: function(collection, response, options) {
+				that.$el.html(that.template({model: response}));
+			}});
 			return this;
 		}
 	});

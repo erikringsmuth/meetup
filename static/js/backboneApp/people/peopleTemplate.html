@@ -1,3 +1,8 @@
 <div>
-	People template
+	<h3>People</h3>
+	<ul>
+	<% $(model).each(function(index, item) { %>
+		<li>Name: <%= item.name %></li>
+	<% }); %>
+	</ul>
 </div>
