@@ -12,7 +12,7 @@ define([
 		
 		render: function() {
 			this.$el.html(this.template());
-			this.$el.append(new PeopleView().render().el);
+			this.$(".main-content").html(new PeopleView().render().el);
 			return this;
 		}
 	});

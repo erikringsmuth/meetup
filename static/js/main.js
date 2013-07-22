@@ -20,9 +20,9 @@
 		}
 	});
 
-	require(['jquery', 'backboneApp/index/indexView'], function($, indexView) {
-		var view = new indexView();
-		$('body').html(view.el);
-		view.render();
+	require(['jquery', 'backboneApp/index/indexView'], function($, IndexView) {
+		var indexView = new IndexView();
+		$('body').html(indexView.el);
+		indexView.render();
 	});
 })();
