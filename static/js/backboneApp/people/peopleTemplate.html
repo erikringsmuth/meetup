@@ -1,8 +1,10 @@
 <div>
 	<h3>People</h3>
 	<ul>
-	<% $(model).each(function(index, item) { %>
-		<li>Name: <%= item.name %></li>
-	<% }); %>
+		<% $(model).each(function(index, item) { %>
+		<li>
+			<a href="<%= item["@id"] %>"><%= item.name %></a>
+		</li>
+		<% }); %>
 	</ul>
 </div>

@@ -4,7 +4,7 @@ define([
 	'backbone',
 	'text!./indexTemplate.html',
 	'backboneApp/people/peopleView'
-], function($, _, Backbone, indexTemplate, peopleView) {
+], function($, _, Backbone, indexTemplate, PeopleView) {
 	'use strict';
 	
 	return Backbone.View.extend({
@@ -12,8 +12,7 @@ define([
 		
 		render: function() {
 			this.$el.html(this.template());
-			var people = new peopleView();
-			this.$el.append(people.render().el);
+			this.$el.append(new PeopleView().render().el);
 			return this;
 		}
 	});

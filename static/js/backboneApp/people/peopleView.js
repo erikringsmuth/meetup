@@ -4,13 +4,13 @@ define([
 	'backbone',
 	'./peopleCollection',
 	'text!./peopleTemplate.html'
-], function($, _, Backbone, peopleCollection, peopleTemplate) {
+], function($, _, Backbone, PeopleCollection, peopleTemplate) {
 	'use strict';
 	
 	return Backbone.View.extend({
 		template: _.template(peopleTemplate),
 		
-		collection: new peopleCollection(),
+		collection: new PeopleCollection(),
 		
 		render: function() {
 			var that = this;
