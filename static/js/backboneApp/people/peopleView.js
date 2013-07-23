@@ -28,10 +28,10 @@ define([
 		
 		createPerson: function(event) {
 			var $createButton = $(event.currentTarget);
-			new PersonModel({
+			this.collection.create({
 				name: $createButton.siblings('[name="name"]').val(),
 				username: $createButton.siblings('[name="username"]').val()
-			}).save();
+			});
 			this.render();
 		},
 		
@@ -39,6 +39,7 @@ define([
 			var $deleteButton = $(event.currentTarget);
 			var person = this.collection.get($deleteButton.data('cid'));
 			person.destroy();
+			//this.collection.remove(person);
 			this.render();
 		}
 	});

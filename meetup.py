@@ -31,6 +31,7 @@ def get_people():
     return json.dumps([{
         "@type": "http://schema.org/Person",
         "@id": "/people/erik.ringsmuth",
+        "id": "erik.ringsmuth",
         "name": "Erik Ringsmuth"
     }])
 
@@ -39,6 +40,7 @@ def get_person(username):
     return json.dumps({
         "@type": "http://schema.org/Person",
         "@id": "/people/" + username,
+        "id": username,
         "name": "Erik Ringsmuth"
     })
 
