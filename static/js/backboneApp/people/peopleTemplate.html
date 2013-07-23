@@ -1,10 +1,18 @@
 <div>
-	<h3>People</h3>
-	<ul>
-		<% $(model).each(function(index, item) { %>
-		<li>
-			<a href="<%= item["@id"] %>"><%= item.name %></a>
-		</li>
-		<% }); %>
-	</ul>
+	<div>
+		<h3>Your Friends</h3>
+		<ul>
+			<% $(model).each(function(index, item) { %>
+			<li>
+				<a href="<%= item.get("@id") %>"><%= item.get("name") %></a>
+				<button name="delete" class="btn btn-mini btn-link" data-cid="<%= item.cid %>" type="button">Remove</button>
+			</li>
+			<% }); %>
+			<li>
+				<input name="name" type="text" placeholder="Name" />
+				<input name="username" type="text" placeholder="Username" />
+				<button name="create" class="btn" type="button">Add</button>
+			</li>
+		</ul>
+	</div>
 </div>
