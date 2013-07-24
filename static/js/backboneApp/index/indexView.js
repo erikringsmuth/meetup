@@ -3,8 +3,11 @@ define([
 	'underscore',
 	'backbone',
 	'text!./indexTemplate.html',
+	'backboneApp/people/peopleView',
+	'backboneApp/people/peopleView',
+	'backboneApp/people/peopleView',
 	'backboneApp/people/peopleView'
-], function($, _, Backbone, indexTemplate, PeopleView) {
+], function($, _, Backbone, indexTemplate, PeopleView, EventsView, PlacesView, ThingsView) {
 	'use strict';
 	
 	return Backbone.View.extend({
@@ -12,8 +15,28 @@ define([
 		
 		render: function() {
 			this.$el.html(this.template());
-			this.$(".main-content").html(new PeopleView().render().el);
+			this.route();
 			return this;
+		},
+		
+		route: function() {
+			var view;
+			switch (window.location.pathname) {
+				case "/":
+				case "/people":
+					view = new PeopleView();
+					break;
+				case "/events":
+					view = new EventsView();
+					break;
+				case "/places":
+					view = new PlacesView();
+					break;
+				case "/things":
+					view = new ThingsView();
+					break;
+			}
+			this.$(".main-content").html(view.render().el);
 		}
 	});
 });
