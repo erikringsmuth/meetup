@@ -4,10 +4,10 @@
 			<div class="container">
 				<a class="brand" href="/">Meetup!</a>
 				<ul class="nav">
-					<li class="active"><a href="/people">People</a></li>
-					<li><a href="/events">Events</a></li>
-					<li><a href="/places">Places</a></li>
-					<li><a href="/things">Things</a></li>
+					<li <%= /^\/people/.test(window.location.pathname) ? "class=\"active\"" : "" %>><a href="/people">People</a></li>
+					<li <%= /^\/events/.test(window.location.pathname) ? "class=\"active\"" : "" %>><a href="/events">Events</a></li>
+					<li <%= /^\/places/.test(window.location.pathname) ? "class=\"active\"" : "" %>><a href="/places">Places</a></li>
+					<li <%= /^\/things/.test(window.location.pathname) ? "class=\"active\"" : "" %>><a href="/things">Things</a></li>
 				</ul>
 			</div>
 		</div>

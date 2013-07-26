@@ -13,6 +13,10 @@ define([
 	return Backbone.View.extend({
 		template: _.template(indexTemplate),
 		
+		events: {
+			'click .navbar a': 'anchorClick'
+		},
+		
 		render: function() {
 			this.$el.html(this.template());
 			this.route();
@@ -37,6 +41,12 @@ define([
 					break;
 			}
 			this.$(".main-content").html(view.render().el);
+		},
+		
+		anchorClick: function(event) {
+			window.history.pushState(null, null, event.currentTarget.pathname);
+			event.preventDefault();
+			this.render();
 		}
 	});
 });

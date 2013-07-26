@@ -17,7 +17,7 @@ def server_static(filepath):
     return bottle.static_file(filepath, root='static')
 
 # Use to smoke check the server after a deploy
-@app.route('/status')
+@app.route('/api/status')
 def status():
     return {'status': "alive"}
 
@@ -26,7 +26,7 @@ def error404(error):
     return "Oops! That's not supported. (404)"
 
 # Todo: These need to be swapped out with real data from the database
-@app.route('/people')
+@app.route('/api/people')
 def get_people():
     return json.dumps([{
         "@type": "http://schema.org/Person",
@@ -35,7 +35,7 @@ def get_people():
         "name": "Erik Ringsmuth"
     }])
 
-@app.route('/people/<username>', method='GET')
+@app.route('/api/people/<username>', method='GET')
 def get_person(username):
     return json.dumps({
         "@type": "http://schema.org/Person",
@@ -44,7 +44,7 @@ def get_person(username):
         "name": "Erik Ringsmuth"
     })
 
-@app.route('/events')
+@app.route('/api/events')
 def get_events():
     return json.dumps([{
         "@type": "http://schema.org/Event",
@@ -59,7 +59,7 @@ def get_events():
         "duration": ""
     }])
 
-@app.route('/events/<id>', method='GET')
+@app.route('/api/events/<id>', method='GET')
 def get_event(id):
     return json.dumps({
         "@type": "http://schema.org/Event",
@@ -74,7 +74,7 @@ def get_event(id):
         "duration": ""
     })
 
-@app.route('/places')
+@app.route('/api/places')
 def get_places():
     return json.dumps([{
         "@type": "http://schema.org/Place",
@@ -92,7 +92,7 @@ def get_places():
         }
     }])
 
-@app.route('/places/<id>', method='GET')
+@app.route('/api/places/<id>', method='GET')
 def get_place(id):
     return json.dumps({
         "@type": "http://schema.org/Place",
@@ -110,7 +110,7 @@ def get_place(id):
         }
     })
 
-@app.route('/things')
+@app.route('/api/things')
 def get_things():
     return json.dumps([{
         "@type": "http://schema.org/Thing",
@@ -120,7 +120,7 @@ def get_things():
         "description": "string"
     }])
 
-@app.route('/things/<id>', method='GET')
+@app.route('/api/things/<id>', method='GET')
 def get_thing(id):
     return json.dumps({
         "@type": "http://schema.org/Thing",
@@ -129,5 +129,9 @@ def get_thing(id):
         "name": "string",
         "description": "string"
     })
+
+@app.route('/<:path>')
+def index():
+    return bottle.static_file('index.html', root='static')
 
 app.run(host='localhost', port=8080, debug=True)
