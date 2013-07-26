@@ -2,6 +2,12 @@ define(['backbone'], function(Backbone) {
 	'use strict';
 	
 	return Backbone.Model.extend({
-		url: '/api/people/<id>'
+		url: function() {
+			var url = '/api/people';
+			if (this.id) {
+				url = url + '/' + this.id;
+			}
+			return url;
+		}
 	});
 });
