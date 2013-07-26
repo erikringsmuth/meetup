@@ -44,3 +44,8 @@ __pycache__
 # Google App Engine (Until they support Python 3.3) #
 #####################################################
 app.yaml
+
+# Databases #
+#############
+*.db
+*.db-journal

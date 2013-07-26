@@ -1,8 +1,14 @@
 import datetime
 import json
+import sqlite3
 
 import bottle
 
+# Database set up
+connection = sqlite3.connect('meetup.db')
+cursor = connection.cursor()
+cursor.execute('CREATE TABLE IF NOT EXISTS people (id TEXT, name TEXT)')
+cursor.close()
 
 app = bottle.Bottle()
 
@@ -16,7 +22,6 @@ def index():
 def server_static(filepath):
     return bottle.static_file(filepath, root='static')
 
-# Use to smoke check the server after a deploy
 @app.route('/api/status')
 def status():
     return {'status': "alive"}
@@ -25,15 +30,25 @@ def status():
 def error404(error):
     return "Oops! That's not supported. (404)"
 
+@app.route('/api/people', method='POST')
+def create_person():
+    person = bottle.request.json
+    username = person['username']
+    name = person['name']
+    cursor = connection.cursor()
+    cursor.execute('INSERT INTO people VALUES(?,?)', (username, name))
+    cursor.close()
+    person['@type'] = 'http://schema.org/Person'
+    person['@id'] = '/api/person/' + username
+    return json.dumps(person)
+
 # Todo: These need to be swapped out with real data from the database
 @app.route('/api/people')
 def get_people():
-    return json.dumps([{
-        "@type": "http://schema.org/Person",
-        "@id": "/people/erik.ringsmuth",
-        "id": "erik.ringsmuth",
-        "name": "Erik Ringsmuth"
-    }])
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM people')
+    people = cursor.fetchall()
+    return json.dumps(people)
 
 @app.route('/api/people/<username>', method='GET')
 def get_person(username):
