@@ -7,7 +7,7 @@ import bottle
 # Database set up
 connection = sqlite3.connect('meetup.db')
 cursor = connection.cursor()
-cursor.execute('CREATE TABLE IF NOT EXISTS people (id TEXT, name TEXT)')
+cursor.execute('CREATE TABLE IF NOT EXISTS people (username TEXT, name TEXT)')
 cursor.close()
 
 app = bottle.Bottle()
@@ -24,7 +24,7 @@ def server_static(filepath):
 
 @app.route('/api/status')
 def status():
-    return {'status': "alive"}
+    return {'status': 'alive'}
 
 @app.error(404)
 def error404(error):
@@ -42,14 +42,21 @@ def create_person():
     person['@id'] = '/api/person/' + username
     return json.dumps(person)
 
-# Todo: These need to be swapped out with real data from the database
 @app.route('/api/people')
 def get_people():
     cursor = connection.cursor()
-    cursor.execute('SELECT * FROM people')
-    people = cursor.fetchall()
+    people = []
+    for row in cursor.execute('SELECT * FROM people'):
+        person = {}
+        person['username'] = row[0]
+        person['name'] = row[1]
+        person['@type'] = 'http://schema.org/Person'
+        person['@id'] = '/api/person/' + person['username']
+        people.append(person)
+    cursor.close()
     return json.dumps(people)
 
+# Todo: These need to be swapped out with real data from the database
 @app.route('/api/people/<username>', method='GET')
 def get_person(username):
     return json.dumps({
