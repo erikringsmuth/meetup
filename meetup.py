@@ -130,6 +130,7 @@ def get_thing(id):
         "description": "string"
     })
 
+# Catch all other routes and have them load the main JS app
 @app.route('/<:path>')
 def index():
     return bottle.static_file('index.html', root='static')

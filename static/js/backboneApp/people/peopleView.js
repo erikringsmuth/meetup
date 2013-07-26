@@ -18,11 +18,13 @@ define([
 			'click button[name="delete"]': 'deletePerson'
 		},
 		
+		initialize: function(options) {
+			this.listenTo(this.collection, "change reset add remove", this.render);
+			this.collection.fetch();
+		},
+		
 		render: function() {
-			var that = this;
-			this.collection.fetch({success: function(collection, response, options) {
-				that.$el.html(that.template({model: collection.models}));
-			}});
+			this.$el.html(this.template({model: this.collection.models}));
 			return this;
 		},
 		
@@ -32,15 +34,12 @@ define([
 				name: $createButton.siblings('[name="name"]').val(),
 				username: $createButton.siblings('[name="username"]').val()
 			});
-			this.render();
 		},
 		
 		deletePerson: function(event) {
 			var $deleteButton = $(event.currentTarget);
 			var person = this.collection.get($deleteButton.data('cid'));
 			person.destroy();
-			//this.collection.remove(person);
-			this.render();
 		}
 	});
 });
