@@ -2,8 +2,3 @@
 body {
 	padding-top: 50px;
 }
-
-/* Fix the vertical alignment of text inputs in lists */
-li input[type="text"] {
-	margin-bottom: 0;
-}
