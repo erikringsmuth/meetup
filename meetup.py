@@ -48,6 +48,7 @@ def get_people():
     people = []
     for row in cursor.execute('SELECT * FROM people'):
         person = {}
+        person['id'] = row[0]
         person['username'] = row[0]
         person['name'] = row[1]
         person['@type'] = 'http://schema.org/Person'
@@ -55,6 +56,13 @@ def get_people():
         people.append(person)
     cursor.close()
     return json.dumps(people)
+
+@app.route('/api/people/<username>', method='DELETE')
+def delete_person(username):
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM people WHERE username='" + username + "'")
+    cursor.close()
+    return
 
 # Todo: These need to be swapped out with real data from the database
 @app.route('/api/people/<username>', method='GET')
