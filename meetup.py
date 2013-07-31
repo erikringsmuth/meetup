@@ -40,6 +40,7 @@ def create_person():
     cursor.close()
     person['@type'] = 'http://schema.org/Person'
     person['@id'] = '/api/person/' + username
+    person['id'] = username
     return json.dumps(person)
 
 @app.route('/api/people')
@@ -48,11 +49,11 @@ def get_people():
     people = []
     for row in cursor.execute('SELECT * FROM people'):
         person = {}
-        person['id'] = row[0]
         person['username'] = row[0]
         person['name'] = row[1]
         person['@type'] = 'http://schema.org/Person'
         person['@id'] = '/api/person/' + person['username']
+        person['id'] = person['username']
         people.append(person)
     cursor.close()
     return json.dumps(people)

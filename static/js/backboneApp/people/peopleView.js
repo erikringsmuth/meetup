@@ -3,9 +3,8 @@ define([
 	'underscore',
 	'backbone',
 	'./peopleCollection',
-	'./personModel',
 	'text!./peopleTemplate.html'
-], function($, _, Backbone, PeopleCollection, PersonModel, peopleTemplate) {
+], function($, _, Backbone, PeopleCollection, peopleTemplate) {
 	'use strict';
 	
 	return Backbone.View.extend({
@@ -31,8 +30,8 @@ define([
 		createPerson: function(event) {
 			var $createButton = $(event.currentTarget);
 			this.collection.create({
-				name: $createButton.siblings('[name="name"]').val(),
-				username: $createButton.siblings('[name="username"]').val()
+				username: $createButton.siblings('[name="username"]').val(),
+				name: $createButton.siblings('[name="name"]').val()
 			});
 		},
 		

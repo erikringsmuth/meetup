@@ -4,7 +4,7 @@
 		<ul>
 			<% $(model).each(function(index, item) { %>
 			<li>
-				<a href="<%= item.get("@id") %>"><%= item.get("name") %></a>
+				<a href="<%= item.get("@id") %>"><%= item.get("name") %> (<%= item.get("username") %>)</a>
 				<button name="delete" class="btn btn-mini btn-link" data-cid="<%= item.cid %>" type="button">Remove</button>
 			</li>
 			<% }); %>

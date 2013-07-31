@@ -8,12 +8,6 @@ define(['backbone'], function(Backbone) {
 				url = url + '/' + this.id;
 			}
 			return url;
-		},
-		
-		validate: function(attrs, options) {
-			if (!attrs.id) {
-				this.attributes.id = attrs.username;
-			}
 		}
 	});
 });
