@@ -31,7 +31,7 @@ def error404(error):
     return "Oops! That's not supported. (404)"
 
 @app.route('/api/people', method='POST')
-def create_person():
+def post_person():
     person = bottle.request.json
     username = person['username']
     name = person['name']
@@ -59,6 +59,20 @@ def get_people():
     cursor.close()
     return json.dumps(people)
 
+@app.route('/api/people/<username>', method='GET')
+def get_person(username):
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM people WHERE username='" + username + "'")
+    data = cursor.fetch_all()
+    person = {}
+    person['username'] = data[0]
+    person['name'] = data[1]
+    person['@type'] = 'http://schema.org/Person'
+    person['@id'] = '/api/person/' + person['username']
+    person['id'] = person['username']
+    cursor.close()
+    return json.dumps(person)
+
 @app.route('/api/people/<username>', method='DELETE')
 def delete_person(username):
     cursor = connection.cursor()
@@ -68,15 +82,6 @@ def delete_person(username):
     return
 
 # Todo: These need to be swapped out with real data from the database
-@app.route('/api/people/<username>', method='GET')
-def get_person(username):
-    return json.dumps({
-        "@type": "http://schema.org/Person",
-        "@id": "/people/" + username,
-        "id": username,
-        "name": "Erik Ringsmuth"
-    })
-
 @app.route('/api/events')
 def get_events():
     return json.dumps([{
