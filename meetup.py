@@ -41,6 +41,7 @@ def create_person():
     person['@type'] = 'http://schema.org/Person'
     person['@id'] = '/api/person/' + username
     person['id'] = username
+    bottle.response.status = 201
     return json.dumps(person)
 
 @app.route('/api/people')
@@ -63,6 +64,7 @@ def delete_person(username):
     cursor = connection.cursor()
     cursor.execute("DELETE FROM people WHERE username='" + username + "'")
     cursor.close()
+    bottle.response.status = 204
     return
 
 # Todo: These need to be swapped out with real data from the database
